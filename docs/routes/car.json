@@ -1,0 +1,97 @@
+{
+    "/api/cars/": {
+        "get": {
+            "description": "Mavjud barcha mashinalarni olish",
+            "tags": ["Car"],
+
+            "responses": {
+                "200": {
+                    "description": "OK"
+                }
+            }
+        },
+        "post": {
+            "description": "Yangi mashina qo'shish",
+            "tags": ["Car"],
+            "parameters": [
+                {
+                    "in": "body",
+                    "name": "Body",
+                    "required": true,
+                    "schema": {
+                        "$ref": "#/definitions/CarCreate"
+                    }
+                }
+            ],
+            "responses": {
+                "201": {
+                    "description": "OK"
+                }
+            }
+        }
+    },
+    "/api/cars/{id}": {
+        "get": {
+            "description": "ID bo'yicha bitta mashina olish",
+            "tags": ["Car"],
+            "parameters": [
+                {
+                    "in": "path",
+                    "name": "id",
+                    "description": "mashina ID si",
+                    "required": true,
+                    "type": "string"
+                }
+            ],
+            "responses": {
+                "200": {
+                    "description": "OK"
+                }
+            }
+        },
+        "patch": {
+            "description": "Mashinani yangilash yoki o'zgartirish",
+            "tags": ["Car"],
+            "parameters": [
+                {
+                    "in": "path",
+                    "name": "id",
+                    "description": "mashina ID si",
+                    "required": true,
+                    "type": "string"
+                },
+                {
+                    "in": "body",
+                    "name": "Body",
+                    "required": true,
+                    "schema": {
+                        "$ref": "#/definitions/CarCreate"
+                    }
+                }
+            ],
+            "responses": {
+                "200": {
+                    "description": "OK"
+                }
+            }
+        },
+        "delete": {
+            "description": "Mashinani o'chirish",
+            "tags": ["Car"],
+            "parameters": [
+                {
+                    "in": "path",
+                    "name": "id",
+                    "description": "Mashina ID si",
+                    "required": true,
+                    "type": "string"
+                }
+            ],
+            "responses": {
+                "204": {
+                    "description": "OK"
+                }
+            }
+        }
+    }
+}

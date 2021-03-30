@@ -1,0 +1,99 @@
+{
+    "ProductCreate": {
+        "properties": {
+            "uz": {
+                "type": "object",
+                "properties": {
+                    "title": {
+                        "type": "string",
+                        "required": true
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "characteristics": {
+                        "type": "object"
+                    }
+                }
+            },
+            "ru": {
+                "type": "object",
+                "properties": {
+                    "title": {
+                        "type": "string",
+                        "required": true
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "characteristics": {
+                        "type": "object"
+                    }
+                }
+            },
+            "type": {
+                "type": "string"
+            },
+            "car": {
+                "type": "string"
+            },
+            "brand": {
+                "type": "string"
+            },
+            "image": {
+                "type": "string",
+                "required": true
+            },
+            "rating": {
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "user": {
+                                    "type": "string"
+                                },
+                                "score": {
+                                    "type": "number"
+                                },
+                                "comment": {
+                                    "type": "string"
+                                },
+                                "date": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "overall": {
+                        "type": "number"
+                    },
+                    "count": {
+                        "type": "number"
+                    }
+                }
+            },
+            "quantity": {
+                "type": "number",
+                "required": true
+            },
+            "price": {
+                "type": "number",
+                "required": true
+            },
+            "discount": {
+                "type": "number",
+                "default": 0
+            },
+            "buy_count": {
+                "type": "number",
+                "default": 0
+            },
+            "createdAt": {
+                "type": "string"
+            }
+        }
+    }
+}

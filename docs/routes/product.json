@@ -1,0 +1,136 @@
+{
+    "/api/products/": {
+        "get": {
+            "description": "Mavjud barcha mahsulotlarni olish",
+            "tags": ["Products"],
+
+            "parameters": [
+                {
+                    "in": "query",
+                    "name": "lang",
+                    "description": "uz yoki ru",
+                    "type": "string"
+                },
+                {
+                    "in": "query",
+                    "name": "type",
+                    "description": "mahsulot turi",
+                    "type": "string"
+                },
+                {
+                    "in": "query",
+                    "name": "car",
+                    "description": "mahsulot tegishli bo'lgan mashina ID si",
+                    "type": "string"
+                },
+                {
+                    "in": "query",
+                    "name": "brand",
+                    "description": "mahsulot tegishli bo'lgan brand ID si",
+                    "type": "string"
+                },
+                {
+                    "in": "query",
+                    "name": "price",
+                    "description": "Mahsulotning minimum narxi",
+                    "type": "number"
+                },
+                {
+                    "in": "query",
+                    "name": "discount",
+                    "description": "Mahsulot uchun minimum chegirma",
+                    "type": "number"
+                }
+            ],
+
+            "responses": {
+                "200": {
+                    "description": "OK"
+                }
+            }
+        },
+        "post": {
+            "description": "Yangi mahsulot qo'shish",
+            "tags": ["Products"],
+            "parameters": [
+                {
+                    "in": "body",
+                    "name": "Body",
+                    "required": true,
+                    "schema": {
+                        "$ref": "#/definitions/ProductCreate"
+                    }
+                }
+            ],
+            "responses": {
+                "201": {
+                    "description": "OK"
+                }
+            }
+        }
+    },
+    "/api/products/{id}": {
+        "get": {
+            "description": "ID bo'yicha bitta mahsulot olish",
+            "tags": ["Products"],
+            "parameters": [
+                {
+                    "in": "path",
+                    "name": "id",
+                    "description": "Mahsulot ID si",
+                    "required": true,
+                    "type": "string"
+                }
+            ],
+            "responses": {
+                "200": {
+                    "description": "OK"
+                }
+            }
+        },
+        "patch": {
+            "description": "Mahsulotni yangilash yoki o'zgartirish",
+            "tags": ["Products"],
+            "parameters": [
+                {
+                    "in": "path",
+                    "name": "id",
+                    "description": "Mahsulot ID si",
+                    "required": true,
+                    "type": "string"
+                },
+                {
+                    "in": "body",
+                    "name": "Body",
+                    "required": true,
+                    "schema": {
+                        "$ref": "#/definitions/ProductCreate"
+                    }
+                }
+            ],
+            "responses": {
+                "200": {
+                    "description": "OK"
+                }
+            }
+        },
+        "delete": {
+            "description": "Mahsulotni o'chirish",
+            "tags": ["Products"],
+            "parameters": [
+                {
+                    "in": "path",
+                    "name": "id",
+                    "description": "Mahsulot ID si",
+                    "required": true,
+                    "type": "string"
+                }
+            ],
+            "responses": {
+                "204": {
+                    "description": "OK"
+                }
+            }
+        }
+    }
+}

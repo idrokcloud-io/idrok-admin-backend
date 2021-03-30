@@ -1,0 +1,97 @@
+{
+    "/api/brands/": {
+        "get": {
+            "description": "Mavjud barcha brandlarni olish",
+            "tags": ["Brand"],
+
+            "responses": {
+                "200": {
+                    "description": "OK"
+                }
+            }
+        },
+        "post": {
+            "description": "Yangi brand qo'shish",
+            "tags": ["Brand"],
+            "parameters": [
+                {
+                    "in": "body",
+                    "name": "Body",
+                    "required": true,
+                    "schema": {
+                        "$ref": "#/definitions/BrandCreate"
+                    }
+                }
+            ],
+            "responses": {
+                "201": {
+                    "description": "OK"
+                }
+            }
+        }
+    },
+    "/api/brands/{id}": {
+        "get": {
+            "description": "ID bo'yicha bitta brand olish",
+            "tags": ["Brand"],
+            "parameters": [
+                {
+                    "in": "path",
+                    "name": "id",
+                    "description": "brand ID si",
+                    "required": true,
+                    "type": "string"
+                }
+            ],
+            "responses": {
+                "200": {
+                    "description": "OK"
+                }
+            }
+        },
+        "patch": {
+            "description": "brandni yangilash yoki o'zgartirish",
+            "tags": ["Brand"],
+            "parameters": [
+                {
+                    "in": "path",
+                    "name": "id",
+                    "description": "brand ID si",
+                    "required": true,
+                    "type": "string"
+                },
+                {
+                    "in": "body",
+                    "name": "Body",
+                    "required": true,
+                    "schema": {
+                        "$ref": "#/definitions/BrandCreate"
+                    }
+                }
+            ],
+            "responses": {
+                "200": {
+                    "description": "OK"
+                }
+            }
+        },
+        "delete": {
+            "description": "brandni o'chirish",
+            "tags": ["Brand"],
+            "parameters": [
+                {
+                    "in": "path",
+                    "name": "id",
+                    "description": "brand ID si",
+                    "required": true,
+                    "type": "string"
+                }
+            ],
+            "responses": {
+                "204": {
+                    "description": "OK"
+                }
+            }
+        }
+    }
+}

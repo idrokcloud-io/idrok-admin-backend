@@ -1,0 +1,37 @@
+{
+    "AdCreate": {
+        "properties": {
+            "uz": {
+                "type": "object",
+                "properties": {
+                    "title": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    }
+                }
+            },
+            "ru": {
+                "type": "object",
+                "properties": {
+                    "title": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    }
+                }
+            },
+            "image": {
+                "type": "string"
+            },
+            "type": {
+                "type": "string"
+            },
+            "createdAt": {
+                "type": "string"
+            }
+        }
+    }
+}

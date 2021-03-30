@@ -1,0 +1,22 @@
+[
+    {
+        "name": "Product",
+        "description": "Mahsulot endpointlari -> /api/products/ route"
+    },
+    {
+        "name": "Ads",
+        "description": "Reklama endpointlari -> /api/ads/ route"
+    },
+    {
+        "name": "Brand",
+        "description": "Brand endpointlari -> /api/brands route"
+    },
+    {
+        "name": "Car",
+        "description": "Mashina endpointlari -> /api/cars route"
+    },
+    {
+        "name": "User",
+        "description": "Foydalanuvchi endpointlari -> /api/users route"
+    }
+]

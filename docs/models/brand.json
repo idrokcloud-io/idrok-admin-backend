@@ -1,0 +1,37 @@
+{
+    "BrandCreate": {
+        "properties": {
+            "uz": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    }
+                }
+            },
+            "ru": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    }
+                }
+            },
+            "cars": {
+                "type": "array",
+                "items": {
+                    "type": "string"
+                }
+            },
+            "products": {
+                "type": "array",
+                "items": {
+                    "type": "string"
+                }
+            },
+            "createdAt": {
+                "type": "string"
+            }
+        }
+    }
+}
