@@ -2,7 +2,7 @@
     "/api/products/": {
         "get": {
             "description": "Mavjud barcha mahsulotlarni olish",
-            "tags": ["Products"],
+            "tags": ["Product"],
 
             "parameters": [
                 {
@@ -51,7 +51,7 @@
         },
         "post": {
             "description": "Yangi mahsulot qo'shish",
-            "tags": ["Products"],
+            "tags": ["Product"],
             "parameters": [
                 {
                     "in": "body",
@@ -72,7 +72,7 @@
     "/api/products/{id}": {
         "get": {
             "description": "ID bo'yicha bitta mahsulot olish",
-            "tags": ["Products"],
+            "tags": ["Product"],
             "parameters": [
                 {
                     "in": "path",
@@ -90,7 +90,7 @@
         },
         "patch": {
             "description": "Mahsulotni yangilash yoki o'zgartirish",
-            "tags": ["Products"],
+            "tags": ["Product"],
             "parameters": [
                 {
                     "in": "path",
@@ -116,7 +116,7 @@
         },
         "delete": {
             "description": "Mahsulotni o'chirish",
-            "tags": ["Products"],
+            "tags": ["Product"],
             "parameters": [
                 {
                     "in": "path",

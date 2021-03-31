@@ -1,0 +1,71 @@
+{
+    "UserCreate": {
+        "properties": {
+            "fullname": {
+                "type": "string",
+                "required": true
+            },
+            "phone": {
+                "type": "string",
+                "required": true
+            },
+            "password": {
+                "type": "string"
+            }
+        }
+    },
+    "UserUpdate": {
+        "properties": {
+            "fullname": {
+                "type": "string",
+                "required": true
+            },
+            "phone": {
+                "type": "string",
+                "required": true
+            }
+        }
+    },
+    "UserLogin": {
+        "properties": {
+            "phone": {
+                "type": "string",
+                "required": true
+            },
+            "password": {
+                "type": "string",
+                "required": true
+            }
+        }
+    },
+    "ChangeCart": {
+        "properties": {
+            "cart": {
+                "type": "array",
+                "items": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "ChangeLiked": {
+        "properties": {
+            "liked": {
+                "type": "array",
+                "items": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "ChangeComparison": {
+        "properties": {
+            "comparison": {
+                "type": "array",
+                "items": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

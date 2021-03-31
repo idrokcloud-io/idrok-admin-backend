@@ -1,0 +1,200 @@
+{
+    "/api/users/": {
+        "get": {
+            "description": "Mavjud barcha foydalanuvchilarni olish",
+            "tags": ["User"],
+
+            "responses": {
+                "200": {
+                    "description": "OK"
+                }
+            }
+        },
+        "patch": {
+            "description": "Foydalanuvchini o'zgartirish",
+            "tags": ["User"],
+
+            "parameters": [
+                {
+                    "in": "header",
+                    "name": "x-token",
+                    "description": "Foydalanuvchining tokeni",
+                    "required": true,
+                    "type": "string"
+                }
+            ],
+
+            "responses": {
+                "200": {
+                    "description": "OK"
+                }
+            }
+        },
+        "delete": {
+            "description": "Foydalanuvchini o'chirish",
+            "tags": ["User"],
+
+            "parameters": [
+                {
+                    "in": "header",
+                    "name": "x-token",
+                    "description": "Foydalanuvchining tokeni",
+                    "required": true,
+                    "type": "string"
+                }
+            ],
+
+            "responses": {
+                "204": {
+                    "description": "OK"
+                }
+            }
+        }
+    },
+    "/api/users/register": {
+        "post": {
+            "description": "Yangi foydalanuvchi qo'shish",
+            "tags": ["User"],
+            "parameters": [
+                {
+                    "in": "body",
+                    "name": "Body",
+                    "required": true,
+                    "schema": {
+                        "$ref": "#/definitions/UserCreate"
+                    }
+                }
+            ],
+            "responses": {
+                "201": {
+                    "description": "OK"
+                }
+            }
+        }
+    },
+    "/api/users/login": {
+        "post": {
+            "description": "Tizimga kirish",
+            "tags": ["User"],
+            "parameters": [
+                {
+                    "in": "body",
+                    "name": "Body",
+                    "required": true,
+                    "schema": {
+                        "$ref": "#/definitions/UserLogin"
+                    }
+                }
+            ],
+            "responses": {
+                "201": {
+                    "description": "OK"
+                }
+            }
+        }
+    },
+    "/api/users/{id}": {
+        "get": {
+            "description": "ID bo'yicha bitta foydalanuvchini olish",
+            "tags": ["User"],
+            "parameters": [
+                {
+                    "in": "path",
+                    "name": "id",
+                    "description": "Foydalanuvchi ID si",
+                    "required": true,
+                    "type": "string"
+                }
+            ],
+            "responses": {
+                "200": {
+                    "description": "OK"
+                }
+            }
+        }
+    },
+    "/api/users/changecart": {
+        "post": {
+            "description": "Foydalanuvchining cartini o'zgartirish",
+            "tags": ["User"],
+            "parameters": [
+                {
+                    "in": "header",
+                    "name": "x-token",
+                    "description": "Foydalanuvchi tokeni",
+                    "required": true,
+                    "type": "string"
+                },
+                {
+                    "in": "body",
+                    "name": "Body",
+                    "required": true,
+                    "schema": {
+                        "$ref": "#/definitions/ChangeCart"
+                    }
+                }
+            ],
+            "responses": {
+                "200": {
+                    "description": "OK"
+                }
+            }
+        }
+    },
+    "/api/users/changeliked": {
+        "post": {
+            "description": "Foydalanuvchining sevimli mahsulotlarini o'zgartirish",
+            "tags": ["User"],
+            "parameters": [
+                {
+                    "in": "header",
+                    "name": "x-token",
+                    "description": "Foydalanuvchi tokeni",
+                    "required": true,
+                    "type": "string"
+                },
+                {
+                    "in": "body",
+                    "name": "Body",
+                    "required": true,
+                    "schema": {
+                        "$ref": "#/definitions/ChangeLiked"
+                    }
+                }
+            ],
+            "responses": {
+                "200": {
+                    "description": "OK"
+                }
+            }
+        }
+    },
+    "/api/users/changecomparison": {
+        "post": {
+            "description": "Foydalanuvchining taqqoslamoqchi bo'lgan mhsulotlarini o'zgartirish",
+            "tags": ["User"],
+            "parameters": [
+                {
+                    "in": "header",
+                    "name": "x-token",
+                    "description": "Foydalanuvchi tokeni",
+                    "required": true,
+                    "type": "string"
+                },
+                {
+                    "in": "body",
+                    "name": "Body",
+                    "required": true,
+                    "schema": {
+                        "$ref": "#/definitions/ChangeComparison"
+                    }
+                }
+            ],
+            "responses": {
+                "200": {
+                    "description": "OK"
+                }
+            }
+        }
+    }
+}
