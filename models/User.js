@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const _ = require("lodash");
+const jwt = require("jsonwebtoken");
 require("dotenv/config");
 
 const userSchema = new Schema({
