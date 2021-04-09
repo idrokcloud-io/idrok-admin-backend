@@ -28,10 +28,10 @@ exports.get = catchAsync(async (req, res, next) => {
 
 exports.register = catchAsync(async (req, res, next) => {
     let user = new User(
-        _.pick(req.body, ["firstName", "lastName", "email", "password", "role"])
+        _.pick(req.body, ["fullname", "phone", "password", "role"])
     );
 
-    const check = await User.findOne({ email: req.body.email });
+    const check = await User.findOne({ phone: req.body.phone });
 
     if (check) {
         return next(new AppError(400, errors.ALREADY_EXISTS));
