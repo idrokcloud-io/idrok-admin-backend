@@ -60,7 +60,7 @@ exports.login = catchAsync(async (req, res, next) => {
     if (!match) {
         return next(new AppError(400, errors.WRONG_INPUT));
     }
-    console.log(user);
+
     res.status(200).header("x-token", user.genToken()).json({
         success: true,
         data: user.toJSON(),

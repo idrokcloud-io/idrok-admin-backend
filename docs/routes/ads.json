@@ -93,5 +93,30 @@
                 }
             }
         }
+    },
+    "/api/uploads/": {
+        "post": {
+            "description": "Yangi file/rasm yuklash",
+            "tags": ["File"],
+            "parameters": [
+                {
+                    "in": "header",
+                    "name": "x-token",
+                    "required": true,
+                    "type": "string"
+                },
+                {
+                    "in": "formData",
+                    "name": "image",
+                    "required": true,
+                    "type": "file"
+                }
+            ],
+            "responses": {
+                "201": {
+                    "description": "OK"
+                }
+            }
+        }
     }
 }

@@ -18,5 +18,9 @@
     {
         "name": "User",
         "description": "Foydalanuvchi endpointlari -> /api/users route"
+    },
+    {
+        "name": "File",
+        "description": "Fayl yuklash endpointi -> /api/uploads route"
     }
 ]
