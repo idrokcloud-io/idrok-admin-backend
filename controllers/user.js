@@ -48,9 +48,9 @@ exports.register = catchAsync(async (req, res, next) => {
 });
 
 exports.login = catchAsync(async (req, res, next) => {
-    const user = await User.findOne({ phone: req.body.phone })
-        .select("+password")
-        .lean();
+    const user = await User.findOne({ phone: req.body.phone }).select(
+        "+password"
+    );
 
     if (!user) {
         return next(new AppError(404, errors.NOT_FOUND));
@@ -60,10 +60,10 @@ exports.login = catchAsync(async (req, res, next) => {
     if (!match) {
         return next(new AppError(400, errors.WRONG_INPUT));
     }
-
+    console.log(user);
     res.status(200).header("x-token", user.genToken()).json({
         success: true,
-        data: user,
+        data: user.toJSON(),
     });
 });
 
@@ -84,7 +84,7 @@ exports.update = catchAsync(async (req, res, next) => {
 });
 
 exports.delete = catchAsync(async (req, res, next) => {
-    await User.findById(req.user.id);
+    await User.findByIdAndDelete(req.user.id);
 
     res.status(204).json({
         success: true,

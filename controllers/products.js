@@ -59,7 +59,7 @@ exports.update = catchAsync(async (req, res, next) => {
 });
 
 exports.delete = catchAsync(async (req, res, next) => {
-    await Product.findById(req.params.id);
+    await Product.findByIdAndDelete(req.params.id);
 
     res.status(204).json({
         success: true,

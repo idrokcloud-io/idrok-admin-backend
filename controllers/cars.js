@@ -47,7 +47,7 @@ exports.update = catchAsync(async (req, res, next) => {
 });
 
 exports.delete = catchAsync(async (req, res, next) => {
-    await Car.findById(req.params.id);
+    await Car.findByIdAndDelete(req.params.id);
     res.status(204).json({
         success: true,
         data: null,

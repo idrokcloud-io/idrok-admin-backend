@@ -3,6 +3,7 @@ const adsRouter = require("./ads");
 const brandRouter = require("./brand");
 const carRouter = require("./car");
 const productRouter = require("./product");
+const uploadRouter = require("./upload");
 
 module.exports = (app) => {
     app.use("/api/users", userRouter);
@@ -10,4 +11,5 @@ module.exports = (app) => {
     app.use("/api/brands", brandRouter);
     app.use("/api/cars", carRouter);
     app.use("/api/products", productRouter);
+    app.use("/api/uploads", uploadRouter);
 };
