@@ -5,7 +5,11 @@ const carRouter = require("./car");
 const productRouter = require("./product");
 const uploadRouter = require("./upload");
 
+// search route
+const search = require("../controllers/search");
+
 module.exports = (app) => {
+    app.get("/api/search", search.search);
     app.use("/api/users", userRouter);
     app.use("/api/ads", adsRouter);
     app.use("/api/brands", brandRouter);

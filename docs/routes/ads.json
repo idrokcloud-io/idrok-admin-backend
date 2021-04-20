@@ -118,5 +118,24 @@
                 }
             }
         }
+    },
+    "/api/search/": {
+        "get": {
+            "description": "Mahsulot qidirish",
+            "tags": ["Search"],
+            "parameters": [
+                {
+                    "in": "query",
+                    "name": "search",
+                    "required": true,
+                    "type": "string"
+                }
+            ],
+            "responses": {
+                "200": {
+                    "description": "OK"
+                }
+            }
+        }
     }
 }

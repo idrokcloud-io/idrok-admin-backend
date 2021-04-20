@@ -100,6 +100,6 @@ const productSchema = new Schema({
     },
 });
 
-productSchema.index({ title: "text", type: "text" });
+productSchema.index({ "uz.title": "text", "ru.title": "text", type: "text" });
 
 module.exports = mongoose.model("Products", productSchema);
