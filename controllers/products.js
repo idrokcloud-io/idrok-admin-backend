@@ -3,18 +3,24 @@ const catchAsync = require("../utils/catchAsync");
 const AppError = require("../utils/appError");
 const errors = require("../constants/errors");
 
+// sort by fields by popularity, rating, skidka, date, name
+
 exports.getAll = catchAsync(async (req, res, next) => {
     let query = {};
-    const { lang, type, price, discount, car, brand } = req.query;
+    let { type, price, discount, car, brand, page } = req.query;
 
+    if (price) {
+        price = price.split(",");
+        query.price = { $gte: price[0], $lte: price[1] || 10000000 };
+    }
     type && (query.type = type);
     car && (query.car = car);
     brand && (query.brand = brand);
-    price && (query.price = { $gte: price });
     discount && (query.discount = { $gte: discount });
 
     const products = await Product.find(query)
-        .select(`+${lang ? lang : "uz"}`)
+        .skip((page || 1) * 20)
+        .limit(20)
         .sort({ createdAt: -1 })
         .lean();
 
@@ -25,7 +31,10 @@ exports.getAll = catchAsync(async (req, res, next) => {
 });
 
 exports.get = catchAsync(async (req, res, next) => {
-    const product = await Product.findById(req.params.id).lean();
+    const product = await Product.findById(req.params.id)
+        .populate("brand")
+        .populate("car")
+        .lean();
 
     if (!product) return next(new AppError(404, errors.NOT_FOUND));
 

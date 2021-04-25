@@ -13,7 +13,10 @@ exports.getAll = catchAsync(async (req, res, next) => {
 });
 
 exports.get = catchAsync(async (req, res, next) => {
-    const car = await Car.findById(req.params.id).lean();
+    const car = await Car.findById(req.params.id)
+        .populate("brand")
+        .populate("products")
+        .lean();
 
     if (!car) return next(new AppError(404, errors.NOT_FOUND));
 

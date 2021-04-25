@@ -3,36 +3,34 @@ const { Schema } = mongoose;
 
 const productSchema = new Schema({
     uz: {
-        type: {
-            title: {
-                type: String,
-                required: true,
-            },
-            description: {
-                type: String,
-                required: true,
-            },
-            characteristics: {},
+        title: {
+            type: String,
+            required: true,
         },
-        select: false,
+        description: {
+            type: String,
+            required: true,
+        },
+        characteristics: [{}],
     },
     ru: {
-        type: {
-            title: {
-                type: String,
-                required: true,
-            },
-            description: {
-                type: String,
-                required: true,
-            },
-            characteristics: {},
+        title: {
+            type: String,
+            required: true,
         },
-        select: false,
+        description: {
+            type: String,
+            required: true,
+        },
+        characteristics: [{}],
     },
     // type will changed
     type: {
         type: String,
+    },
+    slug: {
+        type: String,
+        unique: true,
     },
     car: {
         type: Schema.Types.ObjectId,
@@ -45,6 +43,10 @@ const productSchema = new Schema({
     image: {
         type: String,
         required: true,
+    },
+    photos: [String],
+    artikul: {
+        type: String,
     },
     rating: {
         data: [
@@ -98,6 +100,11 @@ const productSchema = new Schema({
         type: Date,
         default: Date.now,
     },
+});
+
+productSchema.pre("save", function (next) {
+    this.slug = this.uz.title.split(" ").join("-");
+    next();
 });
 
 productSchema.index({ "uz.title": "text", "ru.title": "text", type: "text" });

@@ -48,9 +48,11 @@ exports.register = catchAsync(async (req, res, next) => {
 });
 
 exports.login = catchAsync(async (req, res, next) => {
-    const user = await User.findOne({ phone: req.body.phone }).select(
-        "+password"
-    );
+    const user = await User.findOne({ phone: req.body.phone })
+        .select("+password")
+        .populate("liked")
+        .populate("cart")
+        .populate("comparison");
 
     if (!user) {
         return next(new AppError(404, errors.NOT_FOUND));
