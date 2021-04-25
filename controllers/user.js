@@ -96,7 +96,7 @@ exports.delete = catchAsync(async (req, res, next) => {
 
 // Additional features like cart, liked, comparison
 exports.changeCart = catchAsync(async (req, res, next) => {
-    let user = await User.findById(req.user._id).lean();
+    let user = await User.findById(req.user._id);
 
     if (!user) return next(new AppError(404, errors.NOT_FOUND));
 
@@ -110,7 +110,7 @@ exports.changeCart = catchAsync(async (req, res, next) => {
 });
 
 exports.changeLiked = catchAsync(async (req, res, next) => {
-    let user = await User.findById(req.user._id).lean();
+    let user = await User.findById(req.user._id);
 
     if (!user) return next(new AppError(404, errors.NOT_FOUND));
 
@@ -124,7 +124,7 @@ exports.changeLiked = catchAsync(async (req, res, next) => {
 });
 
 exports.changeComparison = catchAsync(async (req, res, next) => {
-    let user = await User.findById(req.user._id).lean();
+    let user = await User.findById(req.user._id);
 
     if (!user) return next(new AppError(404, errors.NOT_FOUND));
 
