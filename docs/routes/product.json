@@ -7,6 +7,12 @@
             "parameters": [
                 {
                     "in": "query",
+                    "name": "page",
+                    "description": "pagination uchun page nomer",
+                    "type": "string"
+                },
+                {
+                    "in": "query",
                     "name": "lang",
                     "description": "uz yoki ru",
                     "type": "string"

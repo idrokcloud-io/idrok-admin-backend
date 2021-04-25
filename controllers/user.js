@@ -41,9 +41,9 @@ exports.register = catchAsync(async (req, res, next) => {
     user.password = await bcrypt.hash(user.password, salt);
 
     const saved = await user.save();
-    res.status(200).header("x-token", user.genToken()).json({
+    res.status(200).json({
         success: true,
-        data: saved.toJSON(),
+        data: { ...user.toJSON(), "x-token": user.genToken() },
     });
 });
 
@@ -63,9 +63,9 @@ exports.login = catchAsync(async (req, res, next) => {
         return next(new AppError(400, errors.WRONG_INPUT));
     }
 
-    res.status(200).header("x-token", user.genToken()).json({
+    res.status(200).json({
         success: true,
-        data: user.toJSON(),
+        data: { ...user.toJSON(), "x-token": user.genToken() },
     });
 });
 
