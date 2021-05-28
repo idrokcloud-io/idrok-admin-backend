@@ -3,8 +3,8 @@ const user = require("../controllers/user");
 const auth = require("../utils/auth");
 const admin = require("../utils/admin");
 
-router.get("/", [auth, admin], user.getAll);
-router.get("/:id", [auth, admin], user.get);
+router.get("/",  user.getAll);
+router.get("/:id",  user.get);
 router.patch("/", auth, user.update);
 router.delete("/", auth, user.delete);
 

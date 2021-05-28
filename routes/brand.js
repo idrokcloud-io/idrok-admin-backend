@@ -5,8 +5,8 @@ const admin = require("../utils/admin");
 
 router.get("/", brand.getAll);
 router.get("/:id", brand.get);
-router.patch("/:id", [auth, admin], brand.update);
-router.delete("/:id", [auth, admin], brand.delete);
-router.post("/", [auth, admin], brand.create);
+router.patch("/:id",  brand.update);
+router.delete("/:id",  brand.delete);
+router.post("/",  brand.create);
 
 module.exports = router;

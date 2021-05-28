@@ -44,8 +44,6 @@ function deleteFile(path) {
 
 router.post(
     "/",
-    auth,
-    admin,
     upload.single("image"),
     async (req, res, next) => {
         res.status(201).json({
