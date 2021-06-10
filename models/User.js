@@ -31,23 +31,25 @@ const userSchema = new Schema({
             ref: "Products",
         },
     ],
-    cart: [
-        {
-            type: Schema.Types.ObjectId,
-            ref: "Products",
-        },
-    ],
+    cart: {
+        type: Array,
+        default: []
+    },
     comparison: [
         {
             type: Schema.Types.ObjectId,
             ref: "Products",
         },
     ],
+    createdAt: {
+        type: Date,
+        default: Date.now,
+    },
 });
 
 userSchema.index({ phone: "text" });
 
-const jwtPrivateKey = process.env.jwtPrivateKey;
+const jwtPrivateKey = `qweroiujasdkfqwuihasjdchka`;
 userSchema.methods.genToken = function () {
     const token = jwt.sign(
         _.pick(this, ["_id", "fullname", "phone", "role"]),

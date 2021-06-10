@@ -4,7 +4,8 @@ const app = require("./app");
 
 dotenv.config();
 
-const DB = `mongodb+srv://Kolodka:kolodka12345@cluster0.cinzi.mongodb.net/zapuz`
+const DB = `mongodb+srv://RustamovRR:riskiddin98@cluster0.895v8.mongodb.net/test`
+// const DB = `mongodb+srv://riskiddin98:riskiddin98@cluster0.d5xmv.mongodb.net/zapuz`
 
 mongoose
     .connect(DB, {

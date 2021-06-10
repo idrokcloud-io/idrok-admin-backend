@@ -33,12 +33,13 @@ const productSchema = new Schema({
         unique: true,
     },
     car: {
-        type: Schema.Types.ObjectId,
-        ref: "Cars",
+        type: String
     },
     brand: {
-        type: Schema.Types.ObjectId,
-        ref: "Brands",
+        type: String
+    },
+    car_model: {
+        type: String,
     },
     image: {
         type: String,

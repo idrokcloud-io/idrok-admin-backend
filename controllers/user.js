@@ -97,15 +97,18 @@ exports.delete = catchAsync(async (req, res, next) => {
 // Additional features like cart, liked, comparison
 exports.changeCart = catchAsync(async (req, res, next) => {
     let user = await User.findById(req.user._id);
+    console.log(user)
 
     if (!user) return next(new AppError(404, errors.NOT_FOUND));
 
-    user.cart = req.body.cart;
-    user = await user.save();
+    const updateUser = await Product.findByIdAndUpdate(req.user._id, req.body, {
+        new: true,
+        runValidators: true,
+    }).lean();
 
     res.status(200).json({
         success: true,
-        data: user,
+        data: updateUser,
     });
 });
 

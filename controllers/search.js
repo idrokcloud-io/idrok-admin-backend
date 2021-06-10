@@ -5,20 +5,26 @@ const errors = require("../constants/errors");
 
 exports.search = catchAsync(async (req, res, next) => {
     const search = await Product.find(
+        // {
+        //     isActive: true,
+        //     $type: {
+        //         $search: req.query.type,
+        //     },
+        // },
+        // {
+        //     score: {
+        //         $meta: "textScore",
+        //     },
+        // }
         {
-            isActive: true,
-            $text: {
-                $search: req.query.search,
-            },
-        },
-        {
-            score: {
-                $meta: "textScore",
-            },
+            slug: {
+                $regex: req.query.search_text,
+                $options: `$i`
+            }
         }
     )
-        .sort({ score: { $meta: "textScore" } })
-        .lean();
+    // .sort({ score: { $meta: "textScore" } })
+    // .lean();
 
     res.status(200).json({
         success: true,
