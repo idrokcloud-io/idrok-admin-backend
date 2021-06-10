@@ -5,6 +5,15 @@ const errors = require("../constants/errors");
 
 // sort by fields by popularity, rating, skidka, date, name
 
+exports.productAll = catchAsync(async (req, res, next) => {
+    const products = await Product.find()
+
+    res.status(200).json({
+        success: true,
+        data: products,
+    });
+})
+
 exports.getAll = catchAsync(async (req, res, next) => {
     let query = {};
     let {
