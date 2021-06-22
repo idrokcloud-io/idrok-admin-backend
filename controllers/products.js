@@ -6,7 +6,7 @@ const errors = require("../constants/errors");
 // sort by fields by popularity, rating, skidka, date, name
 
 exports.productAll = catchAsync(async (req, res, next) => {
-    const products = await Product.find()
+    const products = await Product.find().sort({ createdAt: -1 })
 
     res.status(200).json({
         success: true,
@@ -19,8 +19,6 @@ exports.getAll = catchAsync(async (req, res, next) => {
     let {
         type,
         price,
-        price_min,
-        price_max,
         discount,
         car,
         car_model,
@@ -34,21 +32,34 @@ exports.getAll = catchAsync(async (req, res, next) => {
         price = price.split(",");
         query.price = { $gte: price[0], $lte: price[1] || 10000000 };
     }
-    // price_min && (query.price_min = { $gte: price_min });
-    // price_max && (query.price_max = { $lte: price_max });
+    if (brand) {
+        brands = brand.split(",");
+        query.brand = brands
+    }
 
     type && (query.type = type);
     car && (query.car = car);
     car_model && (query.car_model = car_model);
     quantity && (query.quantity = { $gte: quantity });
     buy_count && (query.buy_count = { $gte: buy_count });
-    brand && (query.brand = brand);
+    // brand && (query.brand = brand);
     discount && (query.discount = { $gte: discount });
 
-    const products = await Product.find(query)
+
+
+    let sort = {}
+    let { popular, rate, priceup, sale, newly } = req.query
+
+    sort.createdAt = -1
+    popular && (sort.buy_count = -1)
+    rate && (sort.buy_count = -1)
+    priceup && (sort.price = -1)
+
+    const products = await Product
+        .find(query)
         .skip((page || 1) * 20)
         .limit(20)
-        .sort({ createdAt: -1 })
+        .sort(sort)
         .lean();
 
     res.status(200).json({
@@ -59,8 +70,6 @@ exports.getAll = catchAsync(async (req, res, next) => {
 
 exports.get = catchAsync(async (req, res, next) => {
     const product = await Product.findById(req.params.id)
-        .populate("brand")
-        .populate("car")
         .lean();
 
     if (!product) return next(new AppError(404, errors.NOT_FOUND));

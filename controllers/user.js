@@ -72,10 +72,10 @@ exports.login = catchAsync(async (req, res, next) => {
 exports.update = catchAsync(async (req, res, next) => {
     delete req.body.password;
 
-    const user = await User.findByIdAndUpdate(req.user.id, req.body, {
+    const user = await User.findByIdAndUpdate(req.params.id, req.body, {
         new: true,
-        runValidators: true,
-    }).lean();
+        runValidators: true
+    })
 
     if (!user) return next(new AppError(404, errors.NOT_FOUND));
 
@@ -108,8 +108,8 @@ exports.changeCart = catchAsync(async (req, res, next) => {
 
     res.status(200).json({
         success: true,
-        data: updateUser,
-    });
+        data: user
+    })
 });
 
 exports.changeLiked = catchAsync(async (req, res, next) => {

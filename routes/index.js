@@ -4,6 +4,7 @@ const brandRouter = require("./brand");
 const carRouter = require("./car");
 const carModelRouter = require("./carModel");
 const productRouter = require("./product");
+const orderRouter = require("./order");
 const uploadRouter = require("./upload");
 
 // search route
@@ -17,5 +18,6 @@ module.exports = (app) => {
     app.use("/api/cars", carRouter);
     app.use("/api/car-models", carModelRouter);
     app.use("/api/products", productRouter);
+    app.use("/api/order", orderRouter);
     app.use("/api/uploads", uploadRouter);
 };
