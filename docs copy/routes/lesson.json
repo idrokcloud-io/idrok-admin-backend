@@ -1,9 +1,10 @@
 {
-    "/api/cars/": {
+    "/api/lesson": {
         "get": {
-            "description": "Mavjud barcha mashinalarni olish",
-            "tags": ["Car"],
-
+            "description": "Get all lessons",
+            "tags": [
+                "Lesson"
+            ],
             "responses": {
                 "200": {
                     "description": "OK"
@@ -11,34 +12,38 @@
             }
         },
         "post": {
-            "description": "Yangi mashina qo'shish",
-            "tags": ["Car"],
+            "description": "Create new lesson",
+            "tags": [
+                "Lesson"
+            ],
             "parameters": [
                 {
                     "in": "body",
                     "name": "Body",
                     "required": true,
                     "schema": {
-                        "$ref": "#/definitions/CarCreate"
+                        "$ref": "#/definitions/LessonCreate"
                     }
                 }
             ],
             "responses": {
-                "201": {
+                "200": {
                     "description": "OK"
                 }
             }
         }
     },
-    "/api/cars/{id}": {
+    "/api/lesson/{id}": {
         "get": {
-            "description": "ID bo'yicha bitta mashina olish",
-            "tags": ["Car"],
+            "description": "Get lesson by id",
+            "tags": [
+                "Lesson"
+            ],
             "parameters": [
                 {
                     "in": "path",
                     "name": "id",
-                    "description": "mashina ID si",
+                    "description": "Lesson Id",
                     "required": true,
                     "type": "string"
                 }
@@ -49,14 +54,16 @@
                 }
             }
         },
-        "patch": {
-            "description": "Mashinani yangilash yoki o'zgartirish",
-            "tags": ["Car"],
+        "put": {
+            "description": "Update lesson's data",
+            "tags": [
+                "Lesson"
+            ],
             "parameters": [
                 {
                     "in": "path",
                     "name": "id",
-                    "description": "mashina ID si",
+                    "description": "Lesson id",
                     "required": true,
                     "type": "string"
                 },
@@ -65,7 +72,7 @@
                     "name": "Body",
                     "required": true,
                     "schema": {
-                        "$ref": "#/definitions/CarCreate"
+                        "$ref": "#/definitions/LessonUpdate"
                     }
                 }
             ],
@@ -76,13 +83,15 @@
             }
         },
         "delete": {
-            "description": "Mashinani o'chirish",
-            "tags": ["Car"],
+            "description": "Delete lesson",
+            "tags": [
+                "Lesson"
+            ],
             "parameters": [
                 {
                     "in": "path",
                     "name": "id",
-                    "description": "Mashina ID si",
+                    "description": "Lesson Id",
                     "required": true,
                     "type": "string"
                 }

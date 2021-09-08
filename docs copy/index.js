@@ -1,5 +1,4 @@
 const main = require("./swagger.json");
-const tags = require("./tags.json");
 
 const userRoutes = require("./routes/user.json");
 const groupRoutes = require("./routes/group.json");
@@ -28,7 +27,6 @@ const definitions = {
 module.exports = {
     ...main,
     definitions,
-    tags,
     paths,
     host: process.env.BASE_URL,
 };

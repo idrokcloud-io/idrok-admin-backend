@@ -7,10 +7,6 @@ const admin = require("../utils/admin");
 router.post("/login", user.login);
 router.post("/register", user.register);
 
-router.get("/changeCart", user.changeCart);
-router.patch("/changeLiked", user.changeLiked);
-router.post("/changeComparison", user.changeComparison);
-
 router.get("/", user.getAll);
 router.get("/:id", user.get);
 router.patch("/:id", user.update);

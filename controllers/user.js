@@ -28,7 +28,7 @@ exports.get = catchAsync(async (req, res, next) => {
 
 exports.register = catchAsync(async (req, res, next) => {
     let user = new User(
-        _.pick(req.body, ["fullname", "phone", "password", "role"])
+        _.pick(req.body, ["fullName", "phone", "password", "role"])
     );
 
     const check = await User.findOne({ phone: req.body.phone });
@@ -43,7 +43,7 @@ exports.register = catchAsync(async (req, res, next) => {
     const saved = await user.save();
     res.status(200).json({
         success: true,
-        data: { ...user.toJSON(), "x-token": user.genToken() },
+        data: { ...user.toJSON(), "token": user.genToken() },
     });
 });
 
@@ -65,7 +65,7 @@ exports.login = catchAsync(async (req, res, next) => {
 
     res.status(200).json({
         success: true,
-        data: { ...user.toJSON(), "x-token": user.genToken() },
+        data: { ...user.toJSON(), "token": user.genToken() },
     });
 });
 

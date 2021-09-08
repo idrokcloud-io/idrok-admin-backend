@@ -1,56 +1,56 @@
-const Brand = require("../models/Brand");
+const Lesson = require("../models/Lesson");
 const catchAsync = require("../utils/catchAsync");
 const AppError = require("../utils/appError");
 const errors = require("../constants/errors");
 
 exports.getAll = catchAsync(async (req, res, next) => {
-    const brands = await Brand.find().lean();
+    const lessons = await Lesson.find().lean();
 
     res.status(200).json({
         success: true,
-        data: brands,
+        data: lessons,
     });
 });
 
 exports.get = catchAsync(async (req, res, next) => {
-    const brand = await Brand.findById(req.params.id)
-        .populate("cars")
-        .populate("products")
-        .lean();
+    const lesson = await Lesson.findById(req.params.id).lean();
 
-    if (!brand) return next(new AppError(404, errors.NOT_FOUND));
+    if (!lesson) return next(new AppError(404, errors.NOT_FOUND));
 
     res.status(200).json({
         success: true,
-        data: brand,
+        data: lesson,
     });
 });
 
 exports.create = catchAsync(async (req, res, next) => {
-    const brand = await Brand.create(req.body);
+    const lesson = await Lesson.create(req.body);
 
     res.status(201).json({
         success: true,
-        data: brand,
+        data: lesson,
     });
 });
 
-exports.update = catchAsync(async (req, res, next) => {
-    const brand = await Brand.findByIdAndUpdate(req.params.id, req.body, {
-        new: true,
-        runValidators: true,
-    }).lean();
 
-    if (!brand) return next(new AppError(404, errors.NOT_FOUND));
+exports.update = catchAsync(async (req, res, next) => {
+    delete req.body.password;
+
+    const lesson = await Lesson.findByIdAndUpdate(req.params.id, req.body, {
+        new: true,
+        runValidators: true
+    })
+
+    if (!lesson) return next(new AppError(404, errors.NOT_FOUND));
 
     res.status(200).json({
         success: true,
-        data: brand,
+        data: lesson,
     });
 });
 
 exports.delete = catchAsync(async (req, res, next) => {
-    await Brand.findByIdAndDelete(req.params.id);
+    await Lesson.findByIdAndDelete(req.user.id);
 
     res.status(204).json({
         success: true,

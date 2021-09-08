@@ -1,25 +1,30 @@
 {
-    "/api/brands/": {
+    "/api/user": {
         "get": {
-            "description": "Mavjud barcha brandlarni olish",
-            "tags": ["Brand"],
-
+            "description": "Get all users",
+            "tags": [
+                "User"
+            ],
             "responses": {
                 "200": {
                     "description": "OK"
                 }
             }
-        },
+        }
+    },
+    "/api/user/register": {
         "post": {
-            "description": "Yangi brand qo'shish",
-            "tags": ["Brand"],
+            "description": "Login user",
+            "tags": [
+                "User"
+            ],
             "parameters": [
                 {
                     "in": "body",
                     "name": "Body",
                     "required": true,
                     "schema": {
-                        "$ref": "#/definitions/BrandCreate"
+                        "$ref": "#/definitions/Register"
                     }
                 }
             ],
@@ -30,15 +35,40 @@
             }
         }
     },
-    "/api/brands/{id}": {
+    "/api/user/login": {
+        "post": {
+            "description": "Login user",
+            "tags": [
+                "User"
+            ],
+            "parameters": [
+                {
+                    "in": "body",
+                    "name": "Body",
+                    "required": true,
+                    "schema": {
+                        "$ref": "#/definitions/Login"
+                    }
+                }
+            ],
+            "responses": {
+                "201": {
+                    "description": "OK"
+                }
+            }
+        }
+    },
+    "/api/user/{id}": {
         "get": {
-            "description": "ID bo'yicha bitta brand olish",
-            "tags": ["Brand"],
+            "description": "Get user by id",
+            "tags": [
+                "User"
+            ],
             "parameters": [
                 {
                     "in": "path",
                     "name": "id",
-                    "description": "brand ID si",
+                    "description": "User Id",
                     "required": true,
                     "type": "string"
                 }
@@ -49,14 +79,16 @@
                 }
             }
         },
-        "patch": {
-            "description": "brandni yangilash yoki o'zgartirish",
-            "tags": ["Brand"],
+        "put": {
+            "description": "Update user data",
+            "tags": [
+                "User"
+            ],
             "parameters": [
                 {
                     "in": "path",
                     "name": "id",
-                    "description": "brand ID si",
+                    "description": "User id",
                     "required": true,
                     "type": "string"
                 },
@@ -65,7 +97,7 @@
                     "name": "Body",
                     "required": true,
                     "schema": {
-                        "$ref": "#/definitions/BrandCreate"
+                        "$ref": "#/definitions/UserUpdate"
                     }
                 }
             ],
@@ -76,13 +108,15 @@
             }
         },
         "delete": {
-            "description": "brandni o'chirish",
-            "tags": ["Brand"],
+            "description": "Delete user",
+            "tags": [
+                "User"
+            ],
             "parameters": [
                 {
                     "in": "path",
                     "name": "id",
-                    "description": "brand ID si",
+                    "description": "User Id",
                     "required": true,
                     "type": "string"
                 }

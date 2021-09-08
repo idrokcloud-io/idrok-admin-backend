@@ -1,0 +1,16 @@
+{
+    "GroupCreate": {
+        "properties": {
+            "name": {
+                "type": "string"
+            }
+        }
+    },
+    "GroupUpdate": {
+        "properties": {
+            "name": {
+                "type": "string"
+            }
+        }
+    }
+}

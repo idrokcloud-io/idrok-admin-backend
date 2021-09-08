@@ -1,36 +1,23 @@
 {
-    "Register": {
+    "PaymentCreate": {
         "properties": {
-            "fullName": {
+            "name": {
                 "type": "string",
                 "required": true
             },
-            "phone": {
+            "direction": {
                 "type": "string",
                 "required": true
-            },
-            "password": {
-                "type": "string"
             }
         }
     },
-    "Login": {
+    "PaymentUpdate": {
         "properties": {
-            "fullname": {
-                "type": "string"
-            },
-            "phone": {
-                "type": "string"
-            }
-        }
-    },
-    "UserUpdate": {
-        "properties": {
-            "fullname": {
+            "name": {
                 "type": "string",
                 "required": true
             },
-            "phone": {
+            "direction": {
                 "type": "string",
                 "required": true
             }

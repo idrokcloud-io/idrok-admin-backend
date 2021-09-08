@@ -6,7 +6,7 @@ const jwt = require("jsonwebtoken");
 require("dotenv/config");
 
 const userSchema = new Schema({
-    fullname: {
+    fullName: {
         type: String,
         required: true,
     },
@@ -15,32 +15,42 @@ const userSchema = new Schema({
         required: true,
         unique: true,
     },
+    group: {
+        type: Schema.Types.ObjectId,
+        ref: 'Group'
+    },
+    isPaid: {
+        type: Boolean,
+        default: false
+    },
+    payCreatedDate: {
+        type: Date
+    },
+    paySum: {
+        type: Number
+    },
+    groups: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Group'
+        }
+    ],
+    numberOfGroups: {
+        type: Number
+    },
+    attendance: {
+        type: [String]
+    },
     role: {
         type: String,
-        default: "customer",
-        enum: ["customer", "admin"],
+        default: "student",
+        enum: ['admin', 'teacher', 'student']
     },
     password: {
         type: String,
         required: true,
         select: false,
     },
-    liked: [
-        {
-            type: Schema.Types.ObjectId,
-            ref: "Products",
-        },
-    ],
-    cart: {
-        type: Array,
-        default: []
-    },
-    comparison: [
-        {
-            type: Schema.Types.ObjectId,
-            ref: "Products",
-        },
-    ],
     createdAt: {
         type: Date,
         default: Date.now,
@@ -52,7 +62,7 @@ userSchema.index({ phone: "text" });
 const jwtPrivateKey = `qweroiujasdkfqwuihasjdchka`;
 userSchema.methods.genToken = function () {
     const token = jwt.sign(
-        _.pick(this, ["_id", "fullname", "phone", "role"]),
+        _.pick(this, ["_id", "fullName", "phone", "role"]),
         jwtPrivateKey
     );
     return token;

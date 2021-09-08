@@ -1,9 +1,30 @@
 {
-    "/api/user": {
+    "/api/payment": {
         "get": {
-            "description": "Get all users",
+            "description": "Get all payments",
             "tags": [
-                "User"
+                "Payment"
+            ],
+            "responses": {
+                "200": {
+                    "description": "OK"
+                }
+            }
+        },
+        "post": {
+            "description": "Create new payment",
+            "tags": [
+                "Payment"
+            ],
+            "parameters": [
+                {
+                    "in": "body",
+                    "name": "Body",
+                    "required": true,
+                    "schema": {
+                        "$ref": "#/definitions/PaymentCreate"
+                    }
+                }
             ],
             "responses": {
                 "200": {
@@ -12,63 +33,17 @@
             }
         }
     },
-    "/api/user/register": {
-        "post": {
-            "description": "Login user",
-            "tags": [
-                "User"
-            ],
-            "parameters": [
-                {
-                    "in": "body",
-                    "name": "Body",
-                    "required": true,
-                    "schema": {
-                        "$ref": "#/definitions/Register"
-                    }
-                }
-            ],
-            "responses": {
-                "201": {
-                    "description": "OK"
-                }
-            }
-        }
-    },
-    "/api/user/login": {
-        "post": {
-            "description": "Login user",
-            "tags": [
-                "User"
-            ],
-            "parameters": [
-                {
-                    "in": "body",
-                    "name": "Body",
-                    "required": true,
-                    "schema": {
-                        "$ref": "#/definitions/Login"
-                    }
-                }
-            ],
-            "responses": {
-                "201": {
-                    "description": "OK"
-                }
-            }
-        }
-    },
-    "/api/user/{id}": {
+    "/api/payment/{id}": {
         "get": {
-            "description": "Get user by id",
+            "description": "Get payment by id",
             "tags": [
-                "User"
+                "Payment"
             ],
             "parameters": [
                 {
                     "in": "path",
                     "name": "id",
-                    "description": "User Id",
+                    "description": "Payment Id",
                     "required": true,
                     "type": "string"
                 }
@@ -80,15 +55,15 @@
             }
         },
         "put": {
-            "description": "Update user data",
+            "description": "Update payment data",
             "tags": [
-                "User"
+                "Payment"
             ],
             "parameters": [
                 {
                     "in": "path",
                     "name": "id",
-                    "description": "User id",
+                    "description": "Payment id",
                     "required": true,
                     "type": "string"
                 },
@@ -97,7 +72,7 @@
                     "name": "Body",
                     "required": true,
                     "schema": {
-                        "$ref": "#/definitions/UserUpdate"
+                        "$ref": "#/definitions/PaymentUpdate"
                     }
                 }
             ],
@@ -108,15 +83,15 @@
             }
         },
         "delete": {
-            "description": "Delete user",
+            "description": "Delete payment",
             "tags": [
-                "User"
+                "Payment"
             ],
             "parameters": [
                 {
                     "in": "path",
                     "name": "id",
-                    "description": "User Id",
+                    "description": "Payment Id",
                     "required": true,
                     "type": "string"
                 }

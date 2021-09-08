@@ -4,11 +4,9 @@ const app = require("./app");
 
 dotenv.config();
 
-const DB = `mongodb+srv://RustamovRR:riskiddin98@cluster0.895v8.mongodb.net/test`
-// const DB = `mongodb+srv://riskiddin98:riskiddin98@cluster0.d5xmv.mongodb.net/zapuz`
 
 mongoose
-    .connect(DB, {
+    .connect(process.env.DB, {
         useNewUrlParser: true,
         useCreateIndex: true,
         useFindAndModify: false,

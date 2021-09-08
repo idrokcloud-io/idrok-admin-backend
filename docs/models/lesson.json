@@ -1,0 +1,32 @@
+{
+    "LessonCreate": {
+        "properties": {
+            "name": {
+                "type": "string",
+                "required": true
+            },
+            "details": {
+                "type": "string"
+            },
+            "type": {
+                "type": "string",
+                "default": "daily"
+            }
+        }
+    },
+    "LessonUpdate": {
+        "properties": {
+            "name": {
+                "type": "string",
+                "required": true
+            },
+            "details": {
+                "type": "string"
+            },
+            "type": {
+                "type": "string",
+                "default": "daily"
+            }
+        }
+    }
+}

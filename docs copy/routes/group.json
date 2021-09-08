@@ -1,9 +1,30 @@
 {
-    "/api/user": {
+    "/api/group": {
         "get": {
-            "description": "Get all users",
+            "description": "Get all groups",
             "tags": [
-                "User"
+                "Group"
+            ],
+            "responses": {
+                "200": {
+                    "description": "OK"
+                }
+            }
+        },
+        "post": {
+            "description": "Create new group",
+            "tags": [
+                "Group"
+            ],
+            "parameters": [
+                {
+                    "in": "body",
+                    "name": "Body",
+                    "required": true,
+                    "schema": {
+                        "$ref": "#/definitions/GroupCreate"
+                    }
+                }
             ],
             "responses": {
                 "200": {
@@ -12,63 +33,17 @@
             }
         }
     },
-    "/api/user/register": {
-        "post": {
-            "description": "Login user",
-            "tags": [
-                "User"
-            ],
-            "parameters": [
-                {
-                    "in": "body",
-                    "name": "Body",
-                    "required": true,
-                    "schema": {
-                        "$ref": "#/definitions/Register"
-                    }
-                }
-            ],
-            "responses": {
-                "201": {
-                    "description": "OK"
-                }
-            }
-        }
-    },
-    "/api/user/login": {
-        "post": {
-            "description": "Login user",
-            "tags": [
-                "User"
-            ],
-            "parameters": [
-                {
-                    "in": "body",
-                    "name": "Body",
-                    "required": true,
-                    "schema": {
-                        "$ref": "#/definitions/Login"
-                    }
-                }
-            ],
-            "responses": {
-                "201": {
-                    "description": "OK"
-                }
-            }
-        }
-    },
-    "/api/user/{id}": {
+    "/api/group/{id}": {
         "get": {
-            "description": "Get user by id",
+            "description": "Get group by id",
             "tags": [
-                "User"
+                "Group"
             ],
             "parameters": [
                 {
                     "in": "path",
                     "name": "id",
-                    "description": "User Id",
+                    "description": "Group Id",
                     "required": true,
                     "type": "string"
                 }
@@ -80,15 +55,15 @@
             }
         },
         "put": {
-            "description": "Update user data",
+            "description": "Update group data",
             "tags": [
-                "User"
+                "Group"
             ],
             "parameters": [
                 {
                     "in": "path",
                     "name": "id",
-                    "description": "User id",
+                    "description": "Group id",
                     "required": true,
                     "type": "string"
                 },
@@ -97,7 +72,7 @@
                     "name": "Body",
                     "required": true,
                     "schema": {
-                        "$ref": "#/definitions/UserUpdate"
+                        "$ref": "#/definitions/GroupUpdate"
                     }
                 }
             ],
@@ -108,15 +83,15 @@
             }
         },
         "delete": {
-            "description": "Delete user",
+            "description": "Delete group",
             "tags": [
-                "User"
+                "Group"
             ],
             "parameters": [
                 {
                     "in": "path",
                     "name": "id",
-                    "description": "User Id",
+                    "description": "Group Id",
                     "required": true,
                     "type": "string"
                 }
