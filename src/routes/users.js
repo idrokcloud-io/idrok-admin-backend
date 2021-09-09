@@ -9,7 +9,7 @@ router.post("/register", user.register);
 
 router.get("/", user.getAll);
 router.get("/:id", user.get);
-router.patch("/:id", user.update);
+router.put("/:id", user.update);
 router.delete("/:id", user.delete);
 
 module.exports = router;

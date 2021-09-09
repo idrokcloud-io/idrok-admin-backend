@@ -1,22 +1,29 @@
 const User = require("../models/User");
 const catchAsync = require("../utils/catchAsync");
 const AppError = require("../utils/appError");
+const ApiFeatures = require("../utils/apiFeatures")
 const errors = require("../constants/errors");
 
 const _ = require("lodash");
 const bcrypt = require("bcryptjs");
 
 exports.getAll = catchAsync(async (req, res, next) => {
-    const users = await User.find().lean();
+    const features = await new ApiFeatures(User.find(), req.query)
+        .filter()
+        .sort()
+        .paginate()
+        .limitFields()
+
+    const users = await features.query
 
     res.status(200).json({
         success: true,
-        data: users,
-    });
+        data: users
+    })
 });
 
 exports.get = catchAsync(async (req, res, next) => {
-    const user = await User.findById(req.params.id).lean();
+    const user = await User.findById(req.params.id)
 
     if (!user) return next(new AppError(404, errors.NOT_FOUND));
 
@@ -50,9 +57,6 @@ exports.register = catchAsync(async (req, res, next) => {
 exports.login = catchAsync(async (req, res, next) => {
     const user = await User.findOne({ phone: req.body.phone })
         .select("+password")
-        .populate("liked")
-        .populate("cart")
-        .populate("comparison");
 
     if (!user) {
         return next(new AppError(404, errors.NOT_FOUND));
@@ -86,56 +90,12 @@ exports.update = catchAsync(async (req, res, next) => {
 });
 
 exports.delete = catchAsync(async (req, res, next) => {
-    await User.findByIdAndDelete(req.user.id);
+    const user = await User.findByIdAndRemove(req.params.id)
+
+    if (!user) return next(new AppError(404, errors.NOT_FOUND));
 
     res.status(204).json({
         success: true,
-        data: null,
-    });
-});
-
-// Additional features like cart, liked, comparison
-exports.changeCart = catchAsync(async (req, res, next) => {
-    let user = await User.findById(req.user._id);
-    console.log(user)
-
-    if (!user) return next(new AppError(404, errors.NOT_FOUND));
-
-    const updateUser = await Product.findByIdAndUpdate(req.user._id, req.body, {
-        new: true,
-        runValidators: true,
-    }).lean();
-
-    res.status(200).json({
-        success: true,
-        data: user
+        data: null
     })
-});
-
-exports.changeLiked = catchAsync(async (req, res, next) => {
-    let user = await User.findById(req.user._id);
-
-    if (!user) return next(new AppError(404, errors.NOT_FOUND));
-
-    user.liked = req.body.liked;
-    user = await user.save();
-
-    res.status(200).json({
-        success: true,
-        data: user,
-    });
-});
-
-exports.changeComparison = catchAsync(async (req, res, next) => {
-    let user = await User.findById(req.user._id);
-
-    if (!user) return next(new AppError(404, errors.NOT_FOUND));
-
-    user.comparison = req.body.comparison;
-    user = await user.save();
-
-    res.status(200).json({
-        success: true,
-        data: user,
-    });
 });

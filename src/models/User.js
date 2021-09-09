@@ -15,29 +15,23 @@ const userSchema = new Schema({
         required: true,
         unique: true,
     },
-    group: {
-        type: Schema.Types.ObjectId,
-        ref: 'Group'
-    },
     isPaid: {
         type: Boolean,
         default: false
     },
     payCreatedDate: {
-        type: Date
+        type: Date,
+        default: Date.now,
     },
     paySum: {
         type: Number
     },
-    groups: [
-        {
-            type: Schema.Types.ObjectId,
-            ref: 'Group'
-        }
-    ],
-    numberOfGroups: {
-        type: Number
-    },
+    // groups: [
+    //     {
+    //         type: Schema.Types.ObjectId,
+    //         ref: 'Group'
+    //     }
+    // ],
     attendance: {
         type: [String]
     },
@@ -74,4 +68,4 @@ userSchema.methods.toJSON = function () {
     return obj;
 };
 
-module.exports = mongoose.model("Users", userSchema);
+module.exports = mongoose.model("User", userSchema);

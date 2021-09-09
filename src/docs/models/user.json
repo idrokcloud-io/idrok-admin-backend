@@ -16,11 +16,13 @@
     },
     "Login": {
         "properties": {
-            "fullname": {
-                "type": "string"
-            },
             "phone": {
-                "type": "string"
+                "type": "string",
+                "required": true
+            },
+            "password": {
+                "type": "string",
+                "required": true
             }
         }
     },
@@ -33,6 +35,18 @@
             "phone": {
                 "type": "string",
                 "required": true
+            },
+            "payCreatedDate": {
+                "type": "Date"
+            },
+            "paySum": {
+                "type": "number"
+            },
+            "attendance": {
+                "type": "array",
+                "items": {
+                    "type": "string"
+                }
             }
         }
     }

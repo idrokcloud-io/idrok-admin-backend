@@ -1,25 +1,28 @@
 {
     "PaymentCreate": {
         "properties": {
-            "name": {
-                "type": "string",
+            "price": {
+                "type": "number",
                 "required": true
             },
-            "direction": {
-                "type": "string",
-                "required": true
+            "details": {
+                "type": "string"
+            },
+            "lesson": {
+                "type": "object"
+            },
+            "user": {
+                "type": "object"
             }
         }
     },
     "PaymentUpdate": {
         "properties": {
-            "name": {
-                "type": "string",
-                "required": true
+            "price": {
+                "type": "number"
             },
-            "direction": {
-                "type": "string",
-                "required": true
+            "details": {
+                "type": "string"
             }
         }
     }

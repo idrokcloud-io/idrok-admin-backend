@@ -6,6 +6,9 @@ const lessonSchema = new Schema({
         type: String,
         required: true
     },
+    details: {
+        type: String,
+    },
     createdAt: {
         type: Date,
         default: Date.now,

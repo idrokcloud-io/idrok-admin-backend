@@ -7,25 +7,16 @@
             },
             "details": {
                 "type": "string"
-            },
-            "type": {
-                "type": "string",
-                "default": "daily"
             }
         }
     },
     "LessonUpdate": {
         "properties": {
             "name": {
-                "type": "string",
-                "required": true
+                "type": "string"
             },
             "details": {
                 "type": "string"
-            },
-            "type": {
-                "type": "string",
-                "default": "daily"
             }
         }
     }

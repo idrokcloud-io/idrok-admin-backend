@@ -2,8 +2,8 @@ const mongoose = require('mongoose')
 const { Schema } = mongoose
 
 const paymentSchema = new Schema({
-    name: {
-        type: String,
+    price: {
+        type: Number,
         required: true
     },
     lesson: {
@@ -13,6 +13,9 @@ const paymentSchema = new Schema({
     user: {
         type: Schema.Types.ObjectId,
         ref: 'User'
+    },
+    details: {
+        type: String
     },
     createdAt: {
         type: Date,

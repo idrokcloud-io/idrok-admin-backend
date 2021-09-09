@@ -2,13 +2,33 @@
     "GroupCreate": {
         "properties": {
             "name": {
+                "type": "string",
+                "required": true
+            },
+            "details": {
                 "type": "string"
+            },
+            "type": {
+                "type": "string",
+                "default": "daily"
+            },
+            "teacher": {
+                "type": "object"
+            },
+            "students": {
+                "type": "array",
+                "items": {
+                    "type": "object"
+                }
             }
         }
     },
     "GroupUpdate": {
         "properties": {
             "name": {
+                "type": "string"
+            },
+            "details": {
                 "type": "string"
             }
         }

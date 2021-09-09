@@ -1,26 +1,33 @@
 const Lesson = require("../models/Lesson");
 const catchAsync = require("../utils/catchAsync");
 const AppError = require("../utils/appError");
+const ApiFeatures = require("../utils/apiFeatures")
 const errors = require("../constants/errors");
 
 exports.getAll = catchAsync(async (req, res, next) => {
-    const lessons = await Lesson.find().lean();
+    const features = await new ApiFeatures(Lesson.find(), req.query)
+        .filter()
+        .sort()
+        .paginate()
+        .limitFields()
+
+    const lessons = await features.query.populate(['lesson', 'teacher', 'students'])
 
     res.status(200).json({
         success: true,
-        data: lessons,
-    });
+        data: lessons
+    })
 });
 
 exports.get = catchAsync(async (req, res, next) => {
-    const lesson = await Lesson.findById(req.params.id).lean();
+    const lesson = await Lesson.findById(req.params.id).populate(['lesson', 'teacher', 'students'])
 
     if (!lesson) return next(new AppError(404, errors.NOT_FOUND));
 
     res.status(200).json({
         success: true,
-        data: lesson,
-    });
+        data: lesson
+    })
 });
 
 exports.create = catchAsync(async (req, res, next) => {
@@ -50,10 +57,12 @@ exports.update = catchAsync(async (req, res, next) => {
 });
 
 exports.delete = catchAsync(async (req, res, next) => {
-    await Lesson.findByIdAndDelete(req.user.id);
+    const lesson = await Lesson.findByIdAndRemove(req.params.id)
+
+    if (!lesson) return next(new AppError(404, errors.NOT_FOUND));
 
     res.status(204).json({
         success: true,
-        data: null,
-    });
+        data: null
+    })
 });

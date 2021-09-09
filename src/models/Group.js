@@ -17,13 +17,10 @@ const groupSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'User'
     },
-    user: [{
+    students: [{
         type: Schema.Types.ObjectId,
         ref: 'User',
     }],
-    numberOfStudents: {
-        type: Number
-    },
     type: {
         type: String,
         enum: ['monthly', 'daily'],

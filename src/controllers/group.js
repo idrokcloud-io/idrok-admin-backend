@@ -1,26 +1,33 @@
 const Group = require("../models/Group");
 const catchAsync = require("../utils/catchAsync");
 const AppError = require("../utils/appError");
+const ApiFeatures = require("../utils/apiFeatures")
 const errors = require("../constants/errors");
 
 exports.getAll = catchAsync(async (req, res, next) => {
-    const groups = await Group.find().lean();
+    const features = await new ApiFeatures(Group.find(), req.query)
+        .filter()
+        .sort()
+        .paginate()
+        .limitFields()
+
+    const groups = await features.query.populate(['lesson', 'teacher', 'students'])
 
     res.status(200).json({
         success: true,
-        data: groups,
-    });
+        data: groups
+    })
 });
 
 exports.get = catchAsync(async (req, res, next) => {
-    const group = await Group.findById(req.params.id).lean();
+    const group = await Group.findById(req.params.id).populate(['lesson', 'teacher', 'students'])
 
     if (!group) return next(new AppError(404, errors.NOT_FOUND));
 
     res.status(200).json({
         success: true,
-        data: group,
-    });
+        data: group
+    })
 });
 
 exports.create = catchAsync(async (req, res, next) => {
@@ -50,10 +57,12 @@ exports.update = catchAsync(async (req, res, next) => {
 });
 
 exports.delete = catchAsync(async (req, res, next) => {
-    await Group.findByIdAndDelete(req.user.id);
+    const group = await Group.findByIdAndRemove(req.params.id)
+
+    if (!group) return next(new AppError(404, errors.NOT_FOUND));
 
     res.status(204).json({
         success: true,
-        data: null,
-    });
+        data: null
+    })
 });
