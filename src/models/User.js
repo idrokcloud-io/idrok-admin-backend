@@ -19,19 +19,6 @@ const userSchema = new Schema({
         type: Boolean,
         default: false
     },
-    payCreatedDate: {
-        type: Date,
-        default: Date.now,
-    },
-    paySum: {
-        type: Number
-    },
-    // groups: [
-    //     {
-    //         type: Schema.Types.ObjectId,
-    //         ref: 'Group'
-    //     }
-    // ],
     attendance: {
         type: [String]
     },
