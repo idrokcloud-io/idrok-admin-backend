@@ -8,8 +8,6 @@ exports.getAll = catchAsync(async (req, res, next) => {
     const features = await new ApiFeatures(Group.find(), req.query)
         .filter()
         .sort()
-        .paginate()
-        .limitFields()
 
     const groups = await features.query.populate(['lesson', 'teacher', 'students'])
 

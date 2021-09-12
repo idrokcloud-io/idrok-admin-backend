@@ -4,11 +4,12 @@ const auth = require("../utils/auth");
 const admin = require("../utils/admin");
 
 
+router.get("/", user.getAll);
+router.get("/:id", user.get);
+
 router.post("/login", user.login);
 router.post("/register", user.register);
 
-router.get("/", user.getAll);
-router.get("/:id", user.get);
 router.put("/:id", user.update);
 router.delete("/:id", user.delete);
 

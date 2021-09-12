@@ -19,6 +19,7 @@ app.use(cors());
 
 // Routes
 app.use("/api/docs", swagger.serve, swagger.setup(swaggerDocs));
+app.use("/uploads", express.static("uploads"));
 
 app.get("/", (_, res) =>
     res.send(

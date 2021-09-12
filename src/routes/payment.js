@@ -1,5 +1,7 @@
 const router = require("express").Router();
 const payment = require("../controllers/payment");
+const auth = require("../utils/auth");
+const admin = require("../utils/admin");
 
 router.get("/", payment.getAll);
 router.post("/", payment.create);

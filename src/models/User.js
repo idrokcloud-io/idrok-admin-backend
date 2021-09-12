@@ -40,7 +40,7 @@ const userSchema = new Schema({
 
 userSchema.index({ phone: "text" });
 
-const jwtPrivateKey = `qweroiujasdkfqwuihasjdchka`;
+const jwtPrivateKey = `jwtPrivateKey`;
 userSchema.methods.genToken = function () {
     const token = jwt.sign(
         _.pick(this, ["_id", "fullName", "phone", "role"]),

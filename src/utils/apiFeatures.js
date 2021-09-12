@@ -27,21 +27,21 @@ class ApiFeatures {
         return this
     }
 
-    // sort() {
-    //     if (this.queryString._sort) {
-    //         const factors = { asc: "", desc: "-" }
-    //         const [field, factor] = this.queryString._sort.split(":")
+    sort() {
+        if (this.queryString._sort) {
+            const factors = { asc: "", desc: "-" }
+            const [field, factor] = this.queryString._sort.split(":")
 
-    //         // @ts-ignore
-    //         const sortBy = `${factors[factor] ?? ""}${field}`
+            // @ts-ignore
+            const sortBy = `${factors[factor] ?? ""}${field}`
 
-    //         this.query = this.query.sort(sortBy)
-    //     } else {
-    //         this.query = this.query.sort(`-createdAt`)
-    //     }
+            this.query = this.query.sort(sortBy)
+        } else {
+            this.query = this.query.sort(`-createdAt`)
+        }
 
-    //     return this
-    // }
+        return this
+    }
 
     paginate() {
 

@@ -11,8 +11,6 @@ exports.getAll = catchAsync(async (req, res, next) => {
     const features = await new ApiFeatures(User.find(), req.query)
         .filter()
         .sort()
-        .paginate()
-        .limitFields()
 
     const users = await features.query
 

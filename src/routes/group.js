@@ -1,5 +1,7 @@
 const router = require("express").Router();
 const group = require("../controllers/group");
+const auth = require("../utils/auth");
+const admin = require("../utils/admin");
 
 router.get("/", group.getAll);
 router.post("/", group.create);

@@ -28,19 +28,9 @@
     },
     "UserUpdate": {
         "properties": {
-            "fullname": {
+            "fullName": {
                 "type": "string",
                 "required": true
-            },
-            "phone": {
-                "type": "string",
-                "required": true
-            },
-            "payCreatedDate": {
-                "type": "Date"
-            },
-            "paySum": {
-                "type": "number"
             },
             "attendance": {
                 "type": "array",
