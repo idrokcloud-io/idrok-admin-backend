@@ -11,6 +11,10 @@
             },
             "password": {
                 "type": "string"
+            },
+            "role": {
+                "type": "string",
+                "default": "student"
             }
         }
     },
