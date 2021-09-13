@@ -21,6 +21,17 @@ const groupSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'User',
     }],
+    price: {
+        type: Number
+    },
+    start: {
+        type: Date,
+        default: Date.now,
+    },
+    end: {
+        type: Date,
+        default: Date.now,
+    },
     type: {
         type: String,
         enum: ['monthly', 'daily'],

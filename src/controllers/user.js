@@ -33,7 +33,7 @@ exports.get = catchAsync(async (req, res, next) => {
 
 exports.register = catchAsync(async (req, res, next) => {
     let user = new User(
-        _.pick(req.body, ["fullName", "phone", "password", "role"])
+        _.pick(req.body, ["fullName", "phone", "password", "role", "profession"])
     );
 
     const check = await User.findOne({ phone: req.body.phone });

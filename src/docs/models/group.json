@@ -12,6 +12,15 @@
                 "type": "string",
                 "default": "daily"
             },
+            "price": {
+                "type": "number"
+            },
+            "start": {
+                "type": "string"
+            },
+            "end": {
+                "type": "string"
+            },
             "teacher": {
                 "type": "object"
             },

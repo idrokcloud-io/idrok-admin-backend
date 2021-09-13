@@ -27,6 +27,9 @@ const userSchema = new Schema({
         default: "student",
         enum: ['admin', 'teacher', 'student']
     },
+    profession: {
+        type: String
+    },
     password: {
         type: String,
         required: true,
@@ -43,7 +46,7 @@ userSchema.index({ phone: "text" });
 const jwtPrivateKey = `jwtPrivateKey`;
 userSchema.methods.genToken = function () {
     const token = jwt.sign(
-        _.pick(this, ["_id", "fullName", "phone", "role"]),
+        _.pick(this, ["_id", "fullName", "phone", "role", "profession"]),
         jwtPrivateKey
     );
     return token;
