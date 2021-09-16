@@ -16,8 +16,8 @@ const userSchema = new Schema({
         unique: true,
     },
     isPaid: {
-        type: Boolean,
-        default: false
+        type: String,
+        default: "unpaid"
     },
     attendance: [{
         date: {
