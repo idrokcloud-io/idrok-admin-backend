@@ -19,9 +19,16 @@ const userSchema = new Schema({
         type: Boolean,
         default: false
     },
-    attendance: {
-        type: [String]
-    },
+    attendance: [{
+        date: {
+            type: Date,
+            default: Date.now
+        },
+        participated: {
+            type: Boolean,
+            default: false
+        }
+    }],
     role: {
         type: String,
         default: "student",
