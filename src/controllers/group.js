@@ -37,7 +37,6 @@ exports.create = catchAsync(async (req, res, next) => {
     });
 });
 
-
 exports.update = catchAsync(async (req, res, next) => {
     delete req.body.password;
 
@@ -52,6 +51,40 @@ exports.update = catchAsync(async (req, res, next) => {
         success: true,
         data: group,
     });
+});
+
+exports.removeStudent = catchAsync(async (req, res, next) => {
+    delete req.body.password;
+
+    const group = await Group.findByIdAndUpdate(
+        req.params.groupId,
+        {
+            $pull: { students: req.params.studentId }
+        })
+
+    if (!group) return next(new AppError(404, errors.NOT_FOUND));
+
+    res.status(204).json({
+        success: true,
+        data: null
+    })
+});
+
+exports.addStudent = catchAsync(async (req, res, next) => {
+    delete req.body.password;
+
+    const group = await Group.findByIdAndUpdate(
+        req.params.groupId,
+        {
+            $addToSet: { students: req.params.studentId }
+        })
+
+    if (!group) return next(new AppError(404, errors.NOT_FOUND));
+
+    res.status(204).json({
+        success: true,
+        data: group
+    })
 });
 
 exports.delete = catchAsync(async (req, res, next) => {

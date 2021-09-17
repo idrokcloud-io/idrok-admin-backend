@@ -102,5 +102,61 @@
                 }
             }
         }
+    },
+    "/api/{groupId}/{studentId}": {
+        "put": {
+            "description": "Update group students",
+            "tags": [
+                "Group"
+            ],
+            "parameters": [
+                {
+                    "in": "path",
+                    "name": "groupId",
+                    "description": "Group id",
+                    "required": true,
+                    "type": "string"
+                },
+                {
+                    "in": "path",
+                    "name": "studentId",
+                    "description": "Student id",
+                    "required": true,
+                    "type": "string"
+                }
+            ],
+            "responses": {
+                "200": {
+                    "description": "OK"
+                }
+            }
+        },
+        "delete": {
+            "description": "Delete a student from group",
+            "tags": [
+                "Group"
+            ],
+            "parameters": [
+                {
+                    "in": "path",
+                    "name": "groupId",
+                    "description": "Group id",
+                    "required": true,
+                    "type": "string"
+                },
+                {
+                    "in": "path",
+                    "name": "student id",
+                    "description": "studentId",
+                    "required": true,
+                    "type": "string"
+                }
+            ],
+            "responses": {
+                "204": {
+                    "description": "OK"
+                }
+            }
+        }
     }
 }
