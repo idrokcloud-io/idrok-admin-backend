@@ -34,7 +34,6 @@ const groupSchema = new Schema({
     },
     type: {
         type: String,
-        enum: ['monthly', 'daily'],
         default: 'daily'
     },
     createdAt: {
