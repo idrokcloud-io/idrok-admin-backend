@@ -14,6 +14,12 @@ const paymentSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'User'
     },
+    type: {
+        type: String
+    },
+    month: {
+        type: String
+    },
     details: {
         type: String
     },
