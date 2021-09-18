@@ -29,6 +29,17 @@ const userSchema = new Schema({
             default: false
         }
     }],
+    payment: [{
+        month: {
+            type: String
+        },
+        status: {
+            type: String
+        },
+        sum: {
+            type: Number
+        },
+    }],
     role: {
         type: String,
         default: "student",
