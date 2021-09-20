@@ -6,7 +6,7 @@ const admin = require("../utils/admin");
 router.get("/", group.getAll);
 router.post("/", group.create);
 router.get("/:id", group.get);
-router.put("/:id/dates", group.update);
+router.put("/:id", group.update);
 // router.put("/:id/dates", group.updateDates);
 router.put("/:groupId/:studentId", group.addStudent);
 router.delete("/:groupId/:studentId", group.removeStudent);
