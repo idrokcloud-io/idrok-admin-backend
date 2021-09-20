@@ -36,7 +36,7 @@ const groupSchema = new Schema({
     dates: [
         [
             {
-                type: Date
+                type: String
             }
         ]
     ],

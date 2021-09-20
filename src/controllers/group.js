@@ -1,3 +1,5 @@
+const moment = require('moment')
+
 const Group = require("../models/Group");
 const catchAsync = require("../utils/catchAsync");
 const AppError = require("../utils/appError");
@@ -22,11 +24,6 @@ exports.get = catchAsync(async (req, res, next) => {
     const group = await Group.findById(req.params.id).populate(['lesson', 'teacher', 'students'])
 
     if (!group) return next(new AppError(404, errors.NOT_FOUND));
-    let empty = []
-    let one = generateDate(new Date())
-    let two = generateDate(new Date())
-    empty.push(one, two)
-    console.log(empty)
 
     res.status(200).json({
         success: true,
@@ -61,11 +58,41 @@ exports.update = catchAsync(async (req, res, next) => {
 
     if (!group) return next(new AppError(404, errors.NOT_FOUND));
 
-    let array = group.dates
-    let one = generateDate(req.body.start, req.body.type)
+    res.status(200).json({
+        success: true,
+        data: group,
+    });
+});
+
+exports.updateDates = catchAsync(async (req, res, next) => {
+    delete req.body.password;
+
+    const group = await Group.findByIdAndUpdate(req.params.id, req.body, {
+        new: true,
+        runValidators: true
+    })
+
+    if (!group) return next(new AppError(404, errors.NOT_FOUND));
+    let groupDates = group.dates
+    let lastArray = groupDates[groupDates.length - 1]
+    let lastDate = lastArray[lastArray.length - 1]
+
+    let dayName = moment(lastDate).format('dddd')
+    let count;
+    if (dayName === 'Friday' || dayName === 'Saturday') {
+        count = 3
+    } else {
+        count = 2
+    }
+    let nextDay = moment(lastDate).add(count, 'days')
+
+    // console.log(moment(nextDay).format('dddd'))
+
+    let one = generateDate(nextDay, group.type)
 
     array.push(one)
     group.dates = array
+    console.log(array)
 
     await group.save()
 
@@ -74,6 +101,7 @@ exports.update = catchAsync(async (req, res, next) => {
         data: group,
     });
 });
+
 
 exports.removeStudent = catchAsync(async (req, res, next) => {
     delete req.body.password;
