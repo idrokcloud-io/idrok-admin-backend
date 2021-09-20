@@ -64,7 +64,7 @@ exports.update = catchAsync(async (req, res, next) => {
     let array = group.dates
     let one = generateDate(req.body.start, req.body.type)
 
-    array.unshift(one)
+    array.push(one)
     group.dates = array
 
     await group.save()
