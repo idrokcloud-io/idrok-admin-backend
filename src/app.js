@@ -2,11 +2,13 @@ const express = require("express");
 const morgan = require("morgan");
 const path = require("path");
 const cors = require("cors");
+const moment = require('moment')
 const swagger = require("swagger-ui-express");
 const swaggerDocs = require("./docs");
 const globalErrorHandler = require("./controllers/error");
 const AppError = require("./utils/appError");
 const indexRouter = require("./routes");
+const generateDate = require("./utils/generateDate");
 
 // Initialize express app
 const app = express();

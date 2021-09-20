@@ -5,23 +5,23 @@
                 "type": "string",
                 "required": true
             },
-            "details": {
-                "type": "string"
-            },
             "type": {
                 "type": "string",
                 "default": "daily"
             },
-            "price": {
-                "type": "number"
-            },
             "start": {
                 "type": "string"
             },
-            "end": {
+            "price": {
+                "type": "number"
+            },
+            "details": {
                 "type": "string"
             },
             "teacher": {
+                "type": "object"
+            },
+            "lesson": {
                 "type": "object"
             },
             "students": {
@@ -37,7 +37,11 @@
             "name": {
                 "type": "string"
             },
-            "details": {
+            "type": {
+                "type": "string",
+                "default": "daily"
+            },
+            "start": {
                 "type": "string"
             }
         }

@@ -6,9 +6,17 @@ const groupSchema = new Schema({
         type: String,
         required: true
     },
-    lesson: {
-        type: Schema.Types.ObjectId,
-        ref: 'Lesson'
+    type: {
+        type: String,
+        default: 'daily',
+        enum: ['daily', 'monthly']
+    },
+    start: {
+        type: Date,
+        default: Date.now,
+    },
+    price: {
+        type: Number
     },
     details: {
         type: String
@@ -17,25 +25,21 @@ const groupSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'User'
     },
+    lesson: {
+        type: Schema.Types.ObjectId,
+        ref: 'Lesson'
+    },
     students: [{
         type: Schema.Types.ObjectId,
         ref: 'User',
     }],
-    price: {
-        type: Number
-    },
-    start: {
-        type: Date,
-        default: Date.now,
-    },
-    end: {
-        type: Date,
-        default: Date.now,
-    },
-    type: {
-        type: String,
-        default: 'daily'
-    },
+    dates: [
+        [
+            {
+                type: Date
+            }
+        ]
+    ],
     createdAt: {
         type: Date,
         default: Date.now,
