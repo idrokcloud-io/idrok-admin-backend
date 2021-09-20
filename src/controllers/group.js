@@ -86,7 +86,7 @@ exports.updateDates = catchAsync(async (req, res, next) => {
     }
     let nextDay = moment(lastDate).add(count, 'days')
 
-    // console.log(moment(nextDay).format('dddd'))
+    console.log(moment(nextDay))
 
     let one = generateDate(nextDay, group.type)
 
