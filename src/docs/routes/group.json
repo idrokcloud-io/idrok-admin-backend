@@ -103,6 +103,28 @@
             }
         }
     },
+    "/api/group/{id}/dates": {
+        "put": {
+            "description": "Generate new dates",
+            "tags": [
+                "Group"
+            ],
+            "parameters": [
+                {
+                    "in": "path",
+                    "name": "id",
+                    "description": "Group id",
+                    "required": true,
+                    "type": "string"
+                }
+            ],
+            "responses": {
+                "200": {
+                    "description": "OK"
+                }
+            }
+        }
+    },
     "/api/{groupId}/{studentId}": {
         "put": {
             "description": "Update group students",

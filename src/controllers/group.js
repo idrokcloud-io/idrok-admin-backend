@@ -1,3 +1,5 @@
+const moment = require('moment')
+
 const Group = require("../models/Group");
 const catchAsync = require("../utils/catchAsync");
 const AppError = require("../utils/appError");
@@ -61,14 +63,6 @@ exports.update = catchAsync(async (req, res, next) => {
 
     if (!group) return next(new AppError(404, errors.NOT_FOUND));
 
-    let array = group.dates
-    let one = generateDate(req.body.start, req.body.type)
-
-    array.push(one)
-    group.dates = array
-
-    await group.save()
-
     res.status(200).json({
         success: true,
         data: group,
@@ -86,26 +80,24 @@ exports.updateDates = catchAsync(async (req, res, next) => {
     if (!group) return next(new AppError(404, errors.NOT_FOUND));
     let groupDates = group.dates
     let lastArray = groupDates[groupDates.length - 1]
-    // let lastDate = lastArray[lastArray.length - 1]
-    let lastDate = '2021-09-23'
+    let lastDate = lastArray[lastArray.length - 1]
 
-    let dayName = moment(lastDate).format('dddd')
+    let dayName = moment(new Date(lastDate)).format('dddd')
+    // console.log(dayName)
     let count;
     if (dayName === 'Friday' || dayName === 'Saturday') {
         count = 3
     } else {
         count = 2
     }
-    let nextDay = moment(lastDate).add(count, 'days')
+    let nextDay = moment(new Date(lastDate)).add(count, 'days')
 
-    console.log(moment(nextDay))
 
     let array = group.dates
     let one = generateDate(nextDay, group.type)
 
     array.push(one)
     group.dates = array
-    console.log(group.type)
 
     await group.save()
 
