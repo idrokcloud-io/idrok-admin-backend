@@ -38,6 +38,12 @@ const userSchema = new Schema({
         },
         paymentDate: {
             type: Date
+        },
+        status: {
+            type: String
+        },
+        sum: {
+            type: Number
         }
     }],
     role: {
