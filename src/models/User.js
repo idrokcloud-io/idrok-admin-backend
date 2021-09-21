@@ -30,15 +30,15 @@ const userSchema = new Schema({
         }
     }],
     payment: [{
-        month: {
-            type: String
+        start: {
+            type: Date
         },
-        status: {
-            type: String
+        end: {
+            type: Date
         },
-        sum: {
-            type: Number
-        },
+        paymentDate: {
+            type: Date
+        }
     }],
     role: {
         type: String,
