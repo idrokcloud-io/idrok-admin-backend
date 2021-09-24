@@ -23,11 +23,14 @@ app.use(cors());
 app.use("/api/docs", swagger.serve, swagger.setup(swaggerDocs))
 app.use("/uploads", express.static("uploads"));
 
+
+
 app.get("/", (_, res) =>
     res.send(
         '<div style="font-size: 48;font-family: Consolas; top: 50%; left: 50%; transform: translate(-50%, -50%); position: absolute;">⚠️ Do not use this route!</div>'
     )
 );
+
 indexRouter(app);
 
 // 404 Error

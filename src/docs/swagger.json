@@ -4,6 +4,7 @@
         "version": "1.0.0",
         "title": "idrok-admin documentation"
     },
-    "host": "http://188.227.85.5:5000",
+    
+    "host": "188.227.85.5:1002",
     "schemes": ["http"]
 }

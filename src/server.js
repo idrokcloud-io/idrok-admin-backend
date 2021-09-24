@@ -6,7 +6,7 @@ dotenv.config();
 
 
 mongoose
-    .connect(process.env.DB, {
+    .connect("mongodb+srv://idrok:DVNAvsrMWnLUmAEx@cluster0.9ujds.mongodb.net/idrok-admin", {
         useNewUrlParser: true,
         useCreateIndex: true,
         useFindAndModify: false,
