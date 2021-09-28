@@ -12,8 +12,10 @@ const groupSchema = new Schema({
         enum: ['daily', 'monthly']
     },
     start: {
-        type: Date,
-        default: Date.now,
+        type: String,
+    },
+    end: {
+        type: String,
     },
     price: {
         type: Number
@@ -22,7 +24,7 @@ const groupSchema = new Schema({
         type: String
     },
     firstLessonDate: {
-        type: String
+        type: Date
     },
     isOdd: {
         type: Boolean

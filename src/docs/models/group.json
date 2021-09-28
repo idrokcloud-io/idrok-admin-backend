@@ -12,6 +12,9 @@
             "start": {
                 "type": "string"
             },
+            "end": {
+                "type": "string"
+            },
             "price": {
                 "type": "number"
             },
