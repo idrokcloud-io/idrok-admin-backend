@@ -24,11 +24,6 @@ exports.get = catchAsync(async (req, res, next) => {
     const group = await Group.findById(req.params.id).populate(['lesson', 'teacher', 'students'])
 
     if (!group) return next(new AppError(404, errors.NOT_FOUND));
-    let empty = []
-    let one = generateDate(new Date())
-    let two = generateDate(new Date())
-    empty.push(one, two)
-    console.log(empty)
 
     res.status(200).json({
         success: true,
@@ -39,8 +34,10 @@ exports.get = catchAsync(async (req, res, next) => {
 exports.create = catchAsync(async (req, res, next) => {
     const group = await Group.create(req.body);
 
+    console.log(req.body)
+
     let array = []
-    let one = generateDate(req.body.start, req.body.type)
+    let one = generateDate(req.body.firstLessonDate, req.body.type)
 
     array.push(one)
     group.dates = array
@@ -83,7 +80,7 @@ exports.updateDates = catchAsync(async (req, res, next) => {
     let lastDate = lastArray[lastArray.length - 1]
 
     let dayName = moment(new Date(lastDate)).format('dddd')
-    // console.log(dayName)
+    console.log(dayName)
     let count;
     if (dayName === 'Friday' || dayName === 'Saturday') {
         count = 3

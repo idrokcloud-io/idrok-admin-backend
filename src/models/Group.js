@@ -21,6 +21,12 @@ const groupSchema = new Schema({
     details: {
         type: String
     },
+    firstLessonDate: {
+        type: String
+    },
+    isOdd: {
+        type: Boolean
+    },
     teacher: {
         type: Schema.Types.ObjectId,
         ref: 'User'

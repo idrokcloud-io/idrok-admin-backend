@@ -17,7 +17,7 @@ module.exports = function (day, type) {
     // next month days
     let nextCurrentDay = moment(day).add(1, 'months')
     let nextMonth = []
-    for (let i = 1; i <= nextCurrentDay.date(); i++) {
+    for (let i = 1; i < nextCurrentDay.date(); i++) {
         let a = moment(day).set({
             date: i,
             months: nextCurrentDay.month(),

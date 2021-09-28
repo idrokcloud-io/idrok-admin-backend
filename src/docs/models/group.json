@@ -18,6 +18,12 @@
             "details": {
                 "type": "string"
             },
+            "firstLessonDate": {
+                "type": "string"
+            },
+            "isOdd": {
+                "type": "boolean"
+            },
             "teacher": {
                 "type": "object"
             },
