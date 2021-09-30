@@ -30,5 +30,5 @@ module.exports = {
     definitions,
     tags,
     paths,
-    host: "88.227.85.5:1002",
+    host: "188.227.85.5:1002",
 };
