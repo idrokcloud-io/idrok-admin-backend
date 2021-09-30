@@ -30,5 +30,5 @@ module.exports = {
     definitions,
     tags,
     paths,
-    host: process.env.BASE_URL,
+    host: "88.227.85.5:1002",
 };
